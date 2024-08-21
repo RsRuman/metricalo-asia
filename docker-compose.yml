@@ -8,7 +8,7 @@ services:
     container_name: api
     working_dir: /var/www
     volumes:
-      - ./backend:/var/www
+      - ./backend:/var/www:delegated
     networks:
       - laravel
     depends_on:
@@ -19,7 +19,7 @@ services:
     container_name: composer
     working_dir: /var/www
     volumes:
-      - ./backend:/var/www
+      - ./backend:/var/www:delegated
     networks:
       - laravel
 
@@ -29,7 +29,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./backend:/var/www
+      - ./backend:/var/www:delegated
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - laravel
@@ -52,4 +52,4 @@ volumes:
 
 networks:
   laravel:
-    driver: bridge
+    name: laravel
